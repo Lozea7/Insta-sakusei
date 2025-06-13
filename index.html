@@ -390,13 +390,13 @@ ${results ? `・成果・感想: ${results}\n` : ''}
                             chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                             const payload = { contents: chatHistory };
                             const apiKey = ""; // APIキーはCanvasによって自動的に提供されます
-                            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                            const apiUrl = `https://gemini-proxy-api-nu.vercel.app/api/generate`; //
                             
                             // Gemini APIへのフェッチリクエスト
                             const response = await fetch(apiUrl, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(payload)
+                                body: JSON.stringify({ prompt: prompt }) //
                             });
                             
                             const result = await response.json();
